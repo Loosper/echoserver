@@ -30,8 +30,9 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 @Path("/hash")
 public class HashController {
+	private static int NBYTES = 4;
+
 	private static Random randomiser = new Random();
-	private static int MAXBYTES = 10;
 	private static List<String> inputs = new ArrayList();
 	
 	private static byte[] randomBytes(int nBytes) {
@@ -49,7 +50,7 @@ public class HashController {
 	public Response start() throws URISyntaxException {
 		
 		// [0; max) -> [1; max]
-		int nBytes = this.randomiser.nextInt(this.MAXBYTES) + 1;
+		int nBytes = NBYTES;
 		byte[] input = this.randomBytes(nBytes);
 		String encoded = HashClass.toB64(input);
 		this.inputs.add(encoded);
@@ -89,6 +90,7 @@ public class HashController {
 			
 			return Response.ok().build();
 		} catch (Exception e) {
+			e.printStackTrace();
 			return this.error();
 		}
 	}
