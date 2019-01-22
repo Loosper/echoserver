@@ -39,7 +39,6 @@ public class ShitcoinMiner {
 		Arrays.fill(brute, Byte.MIN_VALUE);
 //		System.out.println(HashClass.toB64(brute));
 		int i = brute.length - 1;
-		int offset = 1;
 		
 		while (true) {
 //			for every value in a byte
